@@ -1,5 +1,6 @@
 require 'frest/directory_store/version'
 require 'frest/directory_store/loaders'
+require 'frest/core'
 
 module Frest
   module DirectoryStore
@@ -19,7 +20,7 @@ module Frest
           loader = loaders.select { |l| l.types[:file_types].include?(parts.last) }&.first
           loader&.load(content: f, id: parts[0..-2] * '')
         else
-          nil
+          Frest::Core::NotFound
         end
       end
     end
