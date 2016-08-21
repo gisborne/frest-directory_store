@@ -4,6 +4,16 @@ require 'frest/core'
 
 module Frest
   module DirectoryStore
+    class DirectoryStoreClass
+      def initialize(path:)
+        @path = path
+      end
+
+      def get(**c)
+        DirectoryStore.get(**c.merge(path: @path))
+      end
+    end
+
     def get(
         path:,
         id:,
@@ -25,6 +35,10 @@ module Frest
       end
     end
 
-    module_function :get
+    def new(path:)
+      DirectoryStoreClass.new(path: path)
+    end
+
+    module_function :get, :new
   end
 end
