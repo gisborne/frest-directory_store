@@ -7,11 +7,11 @@ describe Frest::DirectoryStore do
   end
 
   it 'can retreive from a directory' do
-    expect(Frest::DirectoryStore::get(path: 'spec/test_files', id: 'test1')).to be_a(Hash)
-    expect(Frest::DirectoryStore::get(path: 'spec/test_files', id: 'test2')).to be_a(Proc)
+    expect(Frest::DirectoryStore.get(path: 'spec/test_files', id: 'test1')).to be_a(Hash)
+    expect(Frest::DirectoryStore.get(path: 'spec/test_files', id: 'test2')).to be_a(Proc)
   end
 
   it 'gets Frest::Core::NotFound if not there' do
-    expect(Frest::DirectoryStore::get(path: 'spec/test_files', id: 'not_there')).to eq(Frest::Core::NotFound)
+    expect(Frest::DirectoryStore.get(path: 'spec/test_files', id: 'not_there')).to eq(Frest::Core::NotFound)
   end
 end
